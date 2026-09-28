@@ -349,7 +349,17 @@ def uploaded_file(filename):
         UPLOAD_FOLDER,
         filename
     )
+# --------------------------------------------------
+# GOOGLE SEARCH CONSOLE VERIFICATION
+# --------------------------------------------------
 
+@app.route("/google192127543091e14d.html")
+def google_verification():
+
+    return send_from_directory(
+        ".",
+        "google192127543091e14d.html"
+    )
 
 # --------------------------------------------------
 # DELETE ALL REPORTS
