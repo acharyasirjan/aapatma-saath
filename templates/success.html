@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Aapatma Saath - Report Submitted</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🚨 Aapatma Saath
+        </div>
+
+        <nav>
+
+            <a href="/">Home</a>
+
+            <a href="/#emergency">
+                Emergency
+            </a>
+
+            <a href="/#how-it-works">
+                How It Works
+            </a>
+
+            <a href="/#about">
+                About
+            </a>
+
+            <a href="/login">
+                Login
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- SUCCESS -->
+
+    <section class="success-section">
+
+        <div class="success-container">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h1>
+                Emergency Report Submitted
+            </h1>
+
+            <p>
+                Your emergency report has been
+                received successfully.
+            </p>
+
+            <p>
+                Our system has recorded your report.
+            </p>
+
+
+            <!-- REPORT ID -->
+
+            <div class="report-id-box">
+
+                <span>
+                    Your Report ID
+                </span>
+
+                <strong>
+                    {{ report_id }}
+                </strong>
+
+            </div>
+
+
+            <p class="important-message">
+
+                Please save your Report ID for
+                future reference.
+
+            </p>
+
+
+            <div class="success-buttons">
+
+                <a
+                    href="/"
+                    class="success-btn"
+                >
+                    🏠 Back to Home
+                </a>
+
+                <a
+                    href="/report"
+                    class="success-btn secondary"
+                >
+                    🚨 Submit Another Report
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 Aapatma Saath |
+            Emergency Reporting System
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

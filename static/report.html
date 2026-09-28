@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aapatma Saath - Emergency Report</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #a50000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #a50000;
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .location-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .location-row input {
+            flex: 1;
+        }
+
+        .location-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 7px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .location-btn:hover {
+            background: #555;
+        }
+
+        .location-message {
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            background: #a50000;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #800000;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #a50000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .required {
+            color: red;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                margin: 20px 12px;
+                padding: 20px;
+            }
+
+            .location-row {
+                flex-direction: column;
+            }
+
+            .location-btn {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>🚨 Aapatma Saath</h1>
+
+    <p>Emergency Reporting System</p>
+
+</header>
+
+
+<div class="container">
+
+    <h2>Submit Emergency Report</h2>
+
+    <p>
+        Please provide accurate information so the emergency can be
+        handled quickly.
+    </p>
+
+
+    <form
+        action="{{ url_for('submit_report') }}"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+
+        <!-- FULL NAME -->
+
+        <label for="full_name">
+            Full Name <span class="required">*</span>
+        </label>
+
+        <input
+            type="text"
+            id="full_name"
+            name="full_name"
+            placeholder="Enter your full name"
+            required
+        >
+
+
+        <!-- PHONE -->
+
+        <label for="phone">
+            Phone Number <span class="required">*</span>
+        </label>
+
+        <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Enter your phone number"
+            required
+        >
+
+
+        <!-- EMERGENCY TYPE -->
+
+        <label for="emergency_type">
+            Emergency Type <span class="required">*</span>
+        </label>
+
+        <select
+            id="emergency_type"
+            name="emergency_type"
+            required
+        >
+
+            <option value="">Select Emergency Type</option>
+
+            <option
+                value="Accident"
+                {% if emergency_type == "Accident" %}selected{% endif %}
+            >
+                🚗 Accident
+            </option>
+
+            <option
+                value="Fire"
+                {% if emergency_type == "Fire" %}selected{% endif %}
+            >
+                🔥 Fire
+            </option>
+
+            <option
+                value="Snake Bite"
+                {% if emergency_type == "Snake Bite" %}selected{% endif %}
+            >
+                🐍 Snake Bite
+            </option>
+
+            <option
+                value="Medical Emergency"
+                {% if emergency_type == "Medical Emergency" %}selected{% endif %}
+            >
+                🏥 Medical Emergency
+            </option>
+
+            <option
+                value="Natural Disaster"
+                {% if emergency_type == "Natural Disaster" %}selected{% endif %}
+            >
+                🌪️ Natural Disaster
+            </option>
+
+            <option
+                value="Other Emergency"
+                {% if emergency_type == "Other Emergency" %}selected{% endif %}
+            >
+                ⚠️ Other Emergency
+            </option>
+
+        </select>
+
+
+        <!-- LOCATION -->
+
+        <label for="location">
+            Emergency Location <span class="required">*</span>
+        </label>
+
+        <div class="location-row">
+
+            <input
+                type="text"
+                id="location"
+                name="location"
+                placeholder="Enter emergency location"
+                required
+            >
+
+            <button
+                type="button"
+                class="location-btn"
+                onclick="getLocation()"
+            >
+                📍 Use My Location
+            </button>
+
+        </div>
+
+        <div
+            id="locationMessage"
+            class="location-message"
+        ></div>
+
+
+        <!-- DESCRIPTION -->
+
+        <label for="description">
+            Description
+        </label>
+
+        <textarea
+            id="description"
+            name="description"
+            placeholder="Describe the emergency..."
+        ></textarea>
+
+
+        <!-- PHOTO -->
+
+        <label for="photo">
+            Photo / Evidence
+        </label>
+
+        <input
+            type="file"
+            id="photo"
+            name="photo"
+            accept="image/*"
+        >
+
+
+        <!-- SUBMIT -->
+
+        <button
+            type="submit"
+            class="submit-btn"
+        >
+            🚨 Submit Emergency Report
+        </button>
+
+    </form>
+
+
+    <a
+        href="{{ url_for('home') }}"
+        class="back-link"
+    >
+        ← Back to Home
+    </a>
+
+</div>
+
+
+<script>
+
+function getLocation() {
+
+    const locationInput =
+        document.getElementById("location");
+
+    const message =
+        document.getElementById("locationMessage");
+
+
+    if (!navigator.geolocation) {
+
+        message.innerHTML =
+            "❌ Geolocation is not supported by this browser.";
+
+        message.style.color = "red";
+
+        return;
+    }
+
+
+    message.innerHTML =
+        "📍 Getting your current location...";
+
+    message.style.color = "#555";
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position) {
+
+            const latitude =
+                position.coords.latitude;
+
+            const longitude =
+                position.coords.longitude;
+
+
+            locationInput.value =
+                "Latitude: " +
+                latitude.toFixed(6) +
+                ", Longitude: " +
+                longitude.toFixed(6);
+
+
+            message.innerHTML =
+                "✅ Current location detected successfully.";
+
+            message.style.color = "green";
+
+        },
+
+
+        function(error) {
+
+            let errorMessage =
+                "❌ Unable to get your location.";
+
+            if (error.code === 1) {
+
+                errorMessage =
+                    "❌ Location permission was denied. Please allow location access or enter the location manually.";
+
+            }
+
+            else if (error.code === 2) {
+
+                errorMessage =
+                    "❌ Your location could not be determined. Please check your phone's GPS/location service.";
+
+            }
+
+            else if (error.code === 3) {
+
+                errorMessage =
+                    "❌ Location request timed out. Please try again.";
+
+            }
+
+
+            message.innerHTML =
+                errorMessage;
+
+            message.style.color = "red";
+
+        },
+
+        {
+            enableHighAccuracy: true,
+            timeout: 15000,
+            maximumAge: 0
+        }
+
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>

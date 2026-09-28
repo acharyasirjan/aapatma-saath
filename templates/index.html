@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aapatma Saath | Emergency Reporting</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+        <div class="logo">
+            🚨 Aapatma Saath
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#emergency">Emergency</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="/login" class="login-btn">Login</a>
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <p class="small-title">
+                24/7 EMERGENCY REPORTING
+            </p>
+
+            <h1>
+                Report an Emergency.
+                <span>Get Help Faster.</span>
+            </h1>
+
+            <p class="hero-text">
+                Aapatma Saath is a digital emergency reporting platform
+                that helps people report accidents, fire, medical
+                emergencies and other incidents quickly.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#emergency" class="btn primary">
+                    🚨 Report Emergency
+                </a>
+
+                <a href="#how-it-works" class="btn secondary">
+                    Learn How It Works
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EMERGENCY INTRO -->
+    <section class="emergency-help">
+
+        <div class="help-icon">
+            🚑
+        </div>
+
+        <div>
+            <p class="small-title">NEED EMERGENCY HELP?</p>
+
+            <h2>
+                Report an Emergency Quickly
+            </h2>
+
+            <p>
+                Report an emergency with important details
+                and location information.
+            </p>
+        </div>
+
+        <a href="#emergency" class="btn primary">
+            Report Now
+        </a>
+
+    </section>
+
+
+    <!-- EMERGENCY SERVICES -->
+    <section id="emergency" class="section">
+
+        <div class="section-heading">
+
+            <p class="small-title">
+                EMERGENCY SERVICES
+            </p>
+
+            <h2>
+                What happened?
+            </h2>
+
+            <p>
+                Select the type of emergency you want to report.
+            </p>
+
+        </div>
+
+
+        <div class="emergency-grid">
+
+            <!-- Accident -->
+            <div class="emergency-card">
+
+                <div class="card-icon">
+                    🚗
+                </div>
+
+                <h3>Accident</h3>
+
+                <p>
+                    Report road accidents and other incidents.
+                </p>
+
+                <a href="/report?type=Accident" class="report-link">
+                    Report →
+                </a>
+
+                <a href="tel:100" class="call-link">
+                    📞 Call Help
+                </a>
+
+            </div>
+
+
+            <!-- Fire -->
+            <div class="emergency-card">
+
+                <div class="card-icon">
+                    🔥
+                </div>
+
+                <h3>Fire</h3>
+
+                <p>
+                    Report fire incidents and dangerous situations.
+                </p>
+
+                <a href="/report?type=Fire" class="report-link">
+                    Report →
+                </a>
+
+                <a href="tel:101" class="call-link">
+                    📞 Call Fire
+                </a>
+
+            </div>
+
+
+            <!-- Snake Bite -->
+            <div class="emergency-card">
+
+                <div class="card-icon">
+                    🐍
+                </div>
+
+                <h3>Snake Bite</h3>
+
+                <p>
+                    Quickly report snake bite emergencies.
+                </p>
+
+                <a href="/report?type=Snake%20Bite" class="report-link">
+                    Report →
+                </a>
+
+                <a href="tel:102" class="call-link">
+                    📞 Medical Help
+                </a>
+
+            </div>
+
+
+            <!-- Medical -->
+            <div class="emergency-card">
+
+                <div class="card-icon">
+                    🏥
+                </div>
+
+                <h3>Medical Emergency</h3>
+
+                <p>
+                    Report urgent medical emergencies.
+                </p>
+
+                <a href="/report?type=Medical%20Emergency"
+                   class="report-link">
+                    Report →
+                </a>
+
+                <a href="tel:102" class="call-link">
+                    📞 Call Ambulance
+                </a>
+
+            </div>
+
+
+            <!-- Natural Disaster -->
+            <div class="emergency-card">
+
+                <div class="card-icon">
+                    🌊
+                </div>
+
+                <h3>Natural Disaster</h3>
+
+                <p>
+                    Report floods, landslides and other disasters.
+                </p>
+
+                <a href="/report?type=Natural%20Disaster"
+                   class="report-link">
+                    Report →
+                </a>
+
+                <a href="tel:100" class="call-link">
+                    📞 Call Help
+                </a>
+
+            </div>
+
+
+            <!-- Other -->
+            <div class="emergency-card">
+
+                <div class="card-icon">
+                    ⚠️
+                </div>
+
+                <h3>Other Emergency</h3>
+
+                <p>
+                    Report an emergency not listed above.
+                </p>
+
+                <a href="/report?type=Other%20Emergency"
+                   class="report-link">
+                    Report →
+                </a>
+
+                <a href="tel:100" class="call-link">
+                    📞 Call Help
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="section light-section">
+
+        <div class="section-heading">
+
+            <p class="small-title">
+                HOW IT WORKS
+            </p>
+
+            <h2>
+                Get Help in Simple Steps
+            </h2>
+
+            <p>
+                Aapatma Saath makes emergency reporting simple and fast.
+            </p>
+
+        </div>
+
+
+        <div class="steps">
+
+            <div class="step">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <h3>
+                    Select Emergency
+                </h3>
+
+                <p>
+                    Choose the emergency category that matches
+                    your situation.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <h3>
+                    Provide Details
+                </h3>
+
+                <p>
+                    Enter important information about the incident.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <h3>
+                    Share Location
+                </h3>
+
+                <p>
+                    Provide your location so responders can
+                    find you faster.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    04
+                </div>
+
+                <h3>
+                    Get Assistance
+                </h3>
+
+                <p>
+                    Your emergency report can then be processed
+                    for assistance.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about" class="section about-section">
+
+        <div class="about-content">
+
+            <p class="small-title">
+                ABOUT AAPATMA SAATH
+            </p>
+
+            <h2>
+                Technology for Faster Emergency Reporting
+            </h2>
+
+            <p>
+                Aapatma Saath is designed to make emergency
+                reporting easier, faster and more accessible
+                through a digital platform.
+            </p>
+
+            <p>
+                Users can select an emergency category,
+                provide incident details and share location
+                information to help communicate emergencies
+                more effectively.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+
+        <p class="small-title">
+            CONTACT
+        </p>
+
+        <h2>
+            Need Assistance?
+        </h2>
+
+        <p>
+            Aapatma Saath is designed to support emergency
+            reporting and communication.
+        </p>
+
+        <div class="contact-info">
+
+            <p>
+                📧 Email:
+                support@aapatmasaath.com
+            </p>
+
+            <p>
+                📞 Emergency Support:
+                102
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 Aapatma Saath. All Rights Reserved.
+        </p>
+
+        <p>
+            Emergency Reporting & Assistance Platform
+        </p>
+
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

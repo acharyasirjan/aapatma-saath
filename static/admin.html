@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Admin Dashboard | Aapatma Saath
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f7f7f7;
+
+            color: #333;
+
+        }
+
+
+        /* ==============================
+           HEADER
+        ============================== */
+
+        .admin-header {
+
+            background: #8b0000;
+
+            color: white;
+
+            padding: 18px 35px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+        .admin-logo {
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+        }
+
+
+        .home-button {
+
+            color: white;
+
+            text-decoration: none;
+
+            border: 1px solid white;
+
+            padding: 8px 15px;
+
+            border-radius: 6px;
+
+        }
+
+
+        /* ==============================
+           MAIN
+        ============================== */
+
+        .dashboard {
+
+            max-width: 1200px;
+
+            margin: 30px auto;
+
+            padding: 0 20px;
+
+        }
+
+
+        .dashboard-title {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .dashboard-title h1 {
+
+            margin-bottom: 8px;
+
+            color: #5b0f14;
+
+        }
+
+
+        .dashboard-title p {
+
+            color: #666;
+
+        }
+
+
+        /* ==============================
+           STAT CARDS
+        ============================== */
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .stat-card {
+
+            background: white;
+
+            padding: 22px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0, 0, 0, 0.08);
+
+        }
+
+
+        .stat-card h3 {
+
+            margin: 0;
+
+            color: #777;
+
+            font-size: 14px;
+
+        }
+
+
+        .stat-number {
+
+            display: block;
+
+            margin-top: 10px;
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            color: #8b0000;
+
+        }
+
+
+        /* ==============================
+           REPORT TABLE
+        ============================== */
+
+        .reports-container {
+
+            background: white;
+
+            border-radius: 10px;
+
+            overflow-x: auto;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0, 0, 0, 0.08);
+
+        }
+
+
+        .reports-header {
+
+            padding: 20px;
+
+            border-bottom:
+                1px solid #eee;
+
+        }
+
+
+        .reports-header h2 {
+
+            margin: 0;
+
+            color: #5b0f14;
+
+        }
+
+
+        table {
+
+            width: 100%;
+
+            border-collapse:
+                collapse;
+
+        }
+
+
+        th {
+
+            background: #fff5f5;
+
+            color: #5b0f14;
+
+            text-align: left;
+
+            padding: 14px;
+
+            white-space: nowrap;
+
+        }
+
+
+        td {
+
+            padding: 14px;
+
+            border-top:
+                1px solid #eee;
+
+            vertical-align: top;
+
+        }
+
+
+        tr:hover {
+
+            background: #fafafa;
+
+        }
+
+
+        /* ==============================
+           URGENCY
+        ============================== */
+
+        .urgency {
+
+            display: inline-block;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+        }
+
+
+        .critical {
+
+            background: #ffe1e1;
+
+            color: #a00000;
+
+        }
+
+
+        .high {
+
+            background: #fff0d5;
+
+            color: #a45a00;
+
+        }
+
+
+        .medium {
+
+            background: #fff8cc;
+
+            color: #756000;
+
+        }
+
+
+        /* ==============================
+           LOADING
+        ============================== */
+
+        .loading {
+
+            text-align: center;
+
+            padding: 40px;
+
+            color: #777;
+
+        }
+
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 700px) {
+
+            .stats {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .admin-header {
+
+                padding: 15px;
+
+            }
+
+
+            .dashboard {
+
+                padding: 0 12px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==============================
+         HEADER
+    ============================== -->
+
+    <header class="admin-header">
+
+        <div class="admin-logo">
+
+            🚨 Aapatma Saath
+            <span style="font-weight: normal;">
+                | Admin
+            </span>
+
+        </div>
+
+
+        <a
+            href="index.html"
+            class="home-button"
+        >
+            Home
+        </a>
+
+    </header>
+
+
+
+    <!-- ==============================
+         DASHBOARD
+    ============================== -->
+
+    <main class="dashboard">
+
+
+        <div class="dashboard-title">
+
+            <h1>
+                Emergency Reports Dashboard
+            </h1>
+
+            <p>
+                View submitted emergency reports.
+            </p>
+
+        </div>
+
+
+
+        <!-- ==========================
+             STATISTICS
+        =========================== -->
+
+        <section class="stats">
+
+
+            <div class="stat-card">
+
+                <h3>
+                    TOTAL REPORTS
+                </h3>
+
+                <span
+                    id="totalReports"
+                    class="stat-number"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    CRITICAL REPORTS
+                </h3>
+
+                <span
+                    id="criticalReports"
+                    class="stat-number"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    HIGH PRIORITY
+                </h3>
+
+                <span
+                    id="highReports"
+                    class="stat-number"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ==========================
+             REPORTS
+        =========================== -->
+
+        <section class="reports-container">
+
+
+            <div class="reports-header">
+
+                <h2>
+                    Submitted Emergency Reports
+                </h2>
+
+            </div>
+
+
+            <div id="reportsArea">
+
+                <div class="loading">
+
+                    ⏳ Loading reports...
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ==============================
+         JAVASCRIPT
+    ============================== -->
+
+    <script>
+
+        async function loadReports() {
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/reports"
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!data.success) {
+
+                    throw new Error(
+                        data.message
+                    );
+
+                }
+
+
+                const reports =
+                    data.reports;
+
+
+                /* ==========================
+                   STATISTICS
+                =========================== */
+
+                document.getElementById(
+                    "totalReports"
+                ).textContent =
+                    reports.length;
+
+
+                document.getElementById(
+                    "criticalReports"
+                ).textContent =
+                    reports.filter(
+                        report =>
+                            report.urgency === "Critical"
+                    ).length;
+
+
+                document.getElementById(
+                    "highReports"
+                ).textContent =
+                    reports.filter(
+                        report =>
+                            report.urgency === "High"
+                    ).length;
+
+
+
+                /* ==========================
+                   NO REPORTS
+                =========================== */
+
+                if (reports.length === 0) {
+
+                    document.getElementById(
+                        "reportsArea"
+                    ).innerHTML = `
+                        <div class="loading">
+                            No emergency reports found.
+                        </div>
+                    `;
+
+                    return;
+
+                }
+
+
+
+                /* ==========================
+                   CREATE TABLE
+                =========================== */
+
+                let tableHTML = `
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Report ID
+                                </th>
+
+                                <th>
+                                    Emergency
+                                </th>
+
+                                <th>
+                                    Reporter
+                                </th>
+
+                                <th>
+                                    Phone
+                                </th>
+
+                                <th>
+                                    Location
+                                </th>
+
+                                <th>
+                                    Urgency
+                                </th>
+
+                                <th>
+                                    Date & Time
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+                `;
+
+
+
+                reports.forEach(
+                    report => {
+
+                        let urgencyClass =
+                            report.urgency
+                                .toLowerCase();
+
+
+                        tableHTML += `
+
+                            <tr>
+
+                                <td>
+                                    <strong>
+                                        ${report.report_id}
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    ${report.emergency_type}
+                                </td>
+
+                                <td>
+                                    ${report.reporter_name}
+                                </td>
+
+                                <td>
+                                    ${report.phone}
+                                </td>
+
+                                <td>
+                                    ${report.location}
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        class="urgency ${urgencyClass}"
+                                    >
+                                        ${report.urgency}
+                                    </span>
+
+                                </td>
+
+                                <td>
+                                    ${report.created_at}
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td colspan="7">
+
+                                    <strong>
+                                        Description:
+                                    </strong>
+
+                                    ${report.description}
+
+                                    ${
+                                        report.additional_info
+                                        ?
+                                        `<br><br>
+                                        <strong>
+                                            Additional Information:
+                                        </strong>
+                                        ${report.additional_info}`
+                                        :
+                                        ""
+                                    }
+
+                                </td>
+
+                            </tr>
+
+                        `;
+
+                    }
+                );
+
+
+
+                tableHTML += `
+
+                        </tbody>
+
+                    </table>
+
+                `;
+
+
+
+                document.getElementById(
+                    "reportsArea"
+                ).innerHTML =
+                    tableHTML;
+
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+
+                document.getElementById(
+                    "reportsArea"
+                ).innerHTML = `
+
+                    <div class="loading">
+
+                        ❌ Unable to load reports.
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        /* ==============================
+           LOAD REPORTS
+        ============================== */
+
+        loadReports();
+
+    </script>
+
+
+</body>
+
+</html>

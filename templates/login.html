@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Aapatma Saath - Admin Login</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🚨 Aapatma Saath
+        </div>
+
+        <nav>
+
+            <a href="/">Home</a>
+
+            <a href="/#emergency">
+                Emergency
+            </a>
+
+            <a href="/#how-it-works">
+                How It Works
+            </a>
+
+            <a href="/#about">
+                About
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- LOGIN -->
+
+    <section class="login-section">
+
+        <div class="login-container">
+
+            <div class="login-icon">
+                🔐
+            </div>
+
+            <h1>
+                Admin Login
+            </h1>
+
+            <p class="login-subtitle">
+                Sign in to manage emergency reports.
+            </p>
+
+
+            {% if error %}
+
+            <div class="login-error">
+                ❌ {{ error }}
+            </div>
+
+            {% endif %}
+
+
+            <form method="POST"
+                  action="/login">
+
+
+                <!-- USERNAME -->
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter username"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                >
+                    🔐 Login
+                </button>
+
+            </form>
+
+
+            <a
+                href="/"
+                class="back-home"
+            >
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 Aapatma Saath |
+            Emergency Reporting System
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
