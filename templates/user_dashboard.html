@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Dashboard - Aapatma Saath</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <div class="dashboard-header">
+
+            <div>
+                <h1>Aapatma Saath</h1>
+                <p>Welcome, {{ user["full_name"] }}</p>
+            </div>
+
+            <div>
+                <a href="{{ url_for('report') }}">
+                    Submit Emergency Report
+                </a>
+
+                <a href="{{ url_for('logout') }}">
+                    Logout
+                </a>
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-content">
+
+            <h2>My Reports</h2>
+
+            {% if reports %}
+
+                <div class="reports-container">
+
+                    {% for report in reports %}
+
+                        <div class="report-card">
+
+                            <h3>
+                                Report ID:
+                                {{ report["report_id"] }}
+                            </h3>
+
+                            <p>
+                                <strong>Emergency:</strong>
+                                {{ report["emergency_type"] }}
+                            </p>
+
+                            <p>
+                                <strong>Location:</strong>
+                                {{ report["location"] }}
+                            </p>
+
+                            <p>
+                                <strong>Description:</strong>
+                                {{ report["description"] }}
+                            </p>
+
+                            <p>
+                                <strong>Date:</strong>
+                                {{ report["date"] }}
+                            </p>
+
+                            <p>
+                                <strong>Status:</strong>
+
+                                <span class="status">
+                                    {{ report["status"] }}
+                                </span>
+
+                            </p>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="no-reports">
+
+                    <h3>No Reports Yet</h3>
+
+                    <p>
+                        You have not submitted any emergency reports.
+                    </p>
+
+                    <a href="{{ url_for('report') }}">
+                        Submit Your First Report
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+</html>
