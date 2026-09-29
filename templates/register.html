@@ -1,87 +1,425 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Create Account - Aapatma Saath</title>
+    <title>Create Account | Aapatma Saath</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eaf7ff, #ffffff);
+            display: flex;
+            flex-direction: column;
+            color: #1f2937;
+        }
+
+        /* Navigation */
+        .navbar {
+            width: 100%;
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 700;
+            color: #087ea4;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #087ea4;
+        }
+
+        /* Main */
+        .page {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 45px 20px;
+        }
+
+        /* Registration Card */
+        .register-card {
+            width: 100%;
+            max-width: 470px;
+            background: white;
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.10);
+            border: 1px solid #e5eef3;
+        }
+
+        .icon {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            background: #e8f7fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            color: #12343b;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+
+        /* Error */
+        .error {
+            background: #fff1f2;
+            color: #dc2626;
+            border: 1px solid #fecdd3;
+            border-radius: 8px;
+            padding: 11px;
+            margin-bottom: 18px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #087ea4;
+            box-shadow: 0 0 0 3px rgba(8, 126, 164, 0.10);
+        }
+
+        input::placeholder {
+            color: #9ca3af;
+        }
+
+        .password-note {
+            margin-top: 6px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        /* Button */
+        .register-button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 9px;
+            background: #087ea4;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .register-button:hover {
+            background: #066b8b;
+            transform: translateY(-1px);
+        }
+
+        /* Login section */
+        .login-box {
+            margin-top: 22px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+        }
+
+        .login-text {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .login-button {
+            display: block;
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #087ea4;
+            border-radius: 9px;
+            color: #087ea4;
+            background: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .login-button:hover {
+            background: #eaf7ff;
+        }
+
+        /* Back Home */
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 22px;
+            text-decoration: none;
+            color: #087ea4;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .back-home:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 18px;
+            font-size: 13px;
+            color: #6b7280;
+            background: white;
+            border-top: 1px solid #eef2f4;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 16px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .register-card {
+                padding: 28px 22px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="auth-container">
+    <!-- Navigation -->
+    <nav class="navbar">
 
-        <div class="auth-box">
+        <div class="logo">
+            🚨 Aapatma Saath
+        </div>
 
-            <h1>Aapatma Saath</h1>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/#emergency">Emergency</a>
+            <a href="/#how-it-works">How It Works</a>
+            <a href="/#about">About</a>
+        </div>
 
-            <h2>Create Account</h2>
+    </nav>
 
-            <p class="auth-subtitle">
+
+    <!-- Main Registration Area -->
+    <main class="page">
+
+        <div class="register-card">
+
+            <div class="icon">
+                👤
+            </div>
+
+            <h1>Create Account</h1>
+
+            <p class="subtitle">
                 Register to use Aapatma Saath emergency services.
             </p>
 
+
             {% if error %}
-                <div class="error-message">
-                    {{ error }}
+                <div class="error">
+                    ❌ {{ error }}
                 </div>
             {% endif %}
 
-            <form method="POST">
 
-                <label>Full Name</label>
+            <form method="POST" action="/register">
 
-                <input
-                    type="text"
-                    name="full_name"
-                    placeholder="Enter your full name"
-                    required
+                <!-- Full Name -->
+                <div class="form-group">
+
+                    <label for="full_name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="full_name"
+                        name="full_name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Email -->
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email address"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Username -->
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Choose a username"
+                        minlength="3"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Password -->
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        minlength="6"
+                        required
+                    >
+
+                    <div class="password-note">
+                        Password must be at least 6 characters.
+                    </div>
+
+                </div>
+
+
+                <!-- Create Account -->
+                <button
+                    type="submit"
+                    class="register-button"
                 >
-
-                <label>Email Address</label>
-
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Enter your email"
-                    required
-                >
-
-                <label>Username</label>
-
-                <input
-                    type="text"
-                    name="username"
-                    placeholder="Choose a username"
-                    required
-                >
-
-                <label>Password</label>
-
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Create a password"
-                    required
-                >
-
-                <button type="submit">
-                    Create Account
+                    👤 Create Account
                 </button>
 
             </form>
 
-            <p class="auth-footer">
-                Already have an account?
-                <a href="{{ url_for('login') }}">Login</a>
-            </p>
+
+            <!-- Login Section -->
+            <div class="login-box">
+
+                <p class="login-text">
+                    Already have an account?
+                </p>
+
+                <a
+                    href="/login"
+                    class="login-button"
+                >
+                    🔐 Login
+                </a>
+
+            </div>
+
+
+            <!-- Back Home -->
+            <a
+                href="/"
+                class="back-home"
+            >
+                ← Back to Home
+            </a>
 
         </div>
 
-    </div>
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        © 2026 Aapatma Saath | Emergency Reporting System
+    </footer>
 
 </body>
 </html>
+```
