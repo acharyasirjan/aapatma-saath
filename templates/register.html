@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +22,6 @@
             color: #1f2937;
         }
 
-        /* Navigation */
         .navbar {
             width: 100%;
             background: white;
@@ -56,7 +54,6 @@
             color: #087ea4;
         }
 
-        /* Main */
         .page {
             flex: 1;
             display: flex;
@@ -65,7 +62,6 @@
             padding: 45px 20px;
         }
 
-        /* Registration Card */
         .register-card {
             width: 100%;
             max-width: 470px;
@@ -103,7 +99,6 @@
             line-height: 1.5;
         }
 
-        /* Error */
         .error {
             background: #fff1f2;
             color: #dc2626;
@@ -115,7 +110,6 @@
             font-size: 14px;
         }
 
-        /* Form */
         .form-group {
             margin-bottom: 17px;
         }
@@ -153,7 +147,6 @@
             color: #6b7280;
         }
 
-        /* Button */
         .register-button {
             width: 100%;
             padding: 13px;
@@ -173,7 +166,6 @@
             transform: translateY(-1px);
         }
 
-        /* Login section */
         .login-box {
             margin-top: 22px;
             padding-top: 20px;
@@ -205,7 +197,6 @@
             background: #eaf7ff;
         }
 
-        /* Back Home */
         .back-home {
             display: block;
             text-align: center;
@@ -220,7 +211,6 @@
             text-decoration: underline;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 18px;
@@ -230,9 +220,7 @@
             border-top: 1px solid #eef2f4;
         }
 
-        /* Mobile */
         @media (max-width: 600px) {
-
             .navbar {
                 padding: 16px 20px;
             }
@@ -254,7 +242,6 @@
 
 <body>
 
-    <!-- Navigation -->
     <nav class="navbar">
 
         <div class="logo">
@@ -270,8 +257,6 @@
 
     </nav>
 
-
-    <!-- Main Registration Area -->
     <main class="page">
 
         <div class="register-card">
@@ -286,22 +271,16 @@
                 Register to use Aapatma Saath emergency services.
             </p>
 
-
             {% if error %}
                 <div class="error">
                     ❌ {{ error }}
                 </div>
             {% endif %}
 
-
             <form method="POST" action="/register">
 
-                <!-- Full Name -->
                 <div class="form-group">
-
-                    <label for="full_name">
-                        Full Name
-                    </label>
+                    <label for="full_name">Full Name</label>
 
                     <input
                         type="text"
@@ -310,16 +289,10 @@
                         placeholder="Enter your full name"
                         required
                     >
-
                 </div>
 
-
-                <!-- Email -->
                 <div class="form-group">
-
-                    <label for="email">
-                        Email Address
-                    </label>
+                    <label for="email">Email Address</label>
 
                     <input
                         type="email"
@@ -328,16 +301,10 @@
                         placeholder="Enter your email address"
                         required
                     >
-
                 </div>
 
-
-                <!-- Username -->
                 <div class="form-group">
-
-                    <label for="username">
-                        Username
-                    </label>
+                    <label for="username">Username</label>
 
                     <input
                         type="text"
@@ -347,16 +314,10 @@
                         minlength="3"
                         required
                     >
-
                 </div>
 
-
-                <!-- Password -->
                 <div class="form-group">
-
-                    <label for="password">
-                        Password
-                    </label>
+                    <label for="password">Password</label>
 
                     <input
                         type="password"
@@ -370,11 +331,8 @@
                     <div class="password-note">
                         Password must be at least 6 characters.
                     </div>
-
                 </div>
 
-
-                <!-- Create Account -->
                 <button
                     type="submit"
                     class="register-button"
@@ -384,8 +342,6 @@
 
             </form>
 
-
-            <!-- Login Section -->
             <div class="login-box">
 
                 <p class="login-text">
@@ -401,8 +357,6 @@
 
             </div>
 
-
-            <!-- Back Home -->
             <a
                 href="/"
                 class="back-home"
@@ -414,12 +368,9 @@
 
     </main>
 
-
-    <!-- Footer -->
     <footer>
         © 2026 Aapatma Saath | Emergency Reporting System
     </footer>
 
 </body>
 </html>
-```
