@@ -1,160 +1,320 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Aapatma Saath</title>
 
-    <title>Aapatma Saath - Admin Login</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eaf7ff, #ffffff);
+            display: flex;
+            flex-direction: column;
+            color: #1f2937;
+        }
 
+        .navbar {
+            width: 100%;
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 700;
+            color: #087ea4;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #087ea4;
+        }
+
+        .page {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 45px 20px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.10);
+            border: 1px solid #e5eef3;
+        }
+
+        .icon {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            background: #e8f7fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            color: #12343b;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .error {
+            background: #fff1f2;
+            color: #dc2626;
+            border: 1px solid #fecdd3;
+            border-radius: 8px;
+            padding: 11px;
+            margin-bottom: 18px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #087ea4;
+            box-shadow: 0 0 0 3px rgba(8, 126, 164, 0.10);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 9px;
+            background: #087ea4;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .login-button:hover {
+            background: #066b8b;
+            transform: translateY(-1px);
+        }
+
+        .register-box {
+            margin-top: 22px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+        }
+
+        .register-text {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .register-button {
+            display: block;
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #087ea4;
+            border-radius: 9px;
+            color: #087ea4;
+            background: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .register-button:hover {
+            background: #eaf7ff;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 22px;
+            text-decoration: none;
+            color: #087ea4;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .back-home:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 18px;
+            font-size: 13px;
+            color: #6b7280;
+            background: white;
+            border-top: 1px solid #eef2f4;
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 16px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .login-card {
+                padding: 28px 22px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">🚨 Aapatma Saath</div>
 
-    <header class="navbar">
-
-        <div class="logo">
-            🚨 Aapatma Saath
-        </div>
-
-        <nav>
-
+        <div class="nav-links">
             <a href="/">Home</a>
+            <a href="/#emergency">Emergency</a>
+            <a href="/#how-it-works">How It Works</a>
+            <a href="/#about">About</a>
+        </div>
+    </nav>
 
-            <a href="/#emergency">
-                Emergency
-            </a>
+    <main class="page">
 
-            <a href="/#how-it-works">
-                How It Works
-            </a>
+        <div class="login-card">
 
-            <a href="/#about">
-                About
-            </a>
+            <div class="icon">🔐</div>
 
-        </nav>
+            <h1>Admin Login</h1>
 
-    </header>
-
-
-    <!-- LOGIN -->
-
-    <section class="login-section">
-
-        <div class="login-container">
-
-            <div class="login-icon">
-                🔐
-            </div>
-
-            <h1>
-                Admin Login
-            </h1>
-
-            <p class="login-subtitle">
+            <p class="subtitle">
                 Sign in to manage emergency reports.
             </p>
 
-
             {% if error %}
-
-            <div class="login-error">
-                ❌ {{ error }}
-            </div>
-
+                <div class="error">
+                    ❌ {{ error }}
+                </div>
             {% endif %}
 
-
-            <form method="POST"
-                  action="/login">
-
-
-                <!-- USERNAME -->
+            <form method="POST" action="/login">
 
                 <div class="form-group">
-
-                    <label for="username">
-                        Username
-                    </label>
-
+                    <label for="username">Username</label>
                     <input
                         type="text"
                         id="username"
                         name="username"
-                        placeholder="Enter username"
+                        placeholder="Enter your username"
                         required
                     >
-
                 </div>
 
-
-                <!-- PASSWORD -->
-
                 <div class="form-group">
-
-                    <label for="password">
-                        Password
-                    </label>
-
+                    <label for="password">Password</label>
                     <input
                         type="password"
                         id="password"
                         name="password"
-                        placeholder="Enter password"
+                        placeholder="Enter your password"
                         required
                     >
-
                 </div>
 
-
-                <!-- LOGIN BUTTON -->
-
-                <button
-                    type="submit"
-                    class="login-btn"
-                >
+                <button type="submit" class="login-button">
                     🔐 Login
                 </button>
 
             </form>
 
+            <!-- Create Account inside the same login box -->
+            <div class="register-box">
 
-            <a
-                href="/"
-                class="back-home"
-            >
+                <p class="register-text">
+                    Don't have an account?
+                </p>
+
+                <a href="/register" class="register-button">
+                    Create an Account
+                </a>
+
+            </div>
+
+            <a href="/" class="back-home">
                 ← Back to Home
             </a>
 
         </div>
 
-    </section>
-
-
-    <!-- FOOTER -->
+    </main>
 
     <footer>
-
-        <p>
-            © 2026 Aapatma Saath |
-            Emergency Reporting System
-        </p>
-
+        © 2026 Aapatma Saath | Emergency Reporting System
     </footer>
 
 </body>
-
 </html>
-<p>
-    Don't have an account?
-    <a href="{{ url_for('register') }}">Create an account</a>
-</p>
+```
